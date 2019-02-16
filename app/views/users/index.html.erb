@@ -1,0 +1,40 @@
+<% provide(:title, "Users")%>
+<div class="medium-12">
+    <table border=1>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Student Name</th>
+                <th>Project title</th>
+                <th>Project Status</th>
+                <th>Supervisor status</th>
+                <th>Assigned supervisor</th>
+            </tr>
+        </thead>
+        <% @users.each do |user| %>
+            <tbody>
+                <tr>
+                    <td> <%= user.id %></td>
+                    <td> <%= link_to user.first_name, user %></td>
+                    <%  user.projects.each do |p| %>
+                        <td> <%= p.title %></td>
+                        <td> <%= p.status %></td>
+                    <% end %>
+                    <% if user.projects.any? && user.not_assigned? %>
+                        <% if @user || @lec %>
+                            <td><%= link_to "assign supervisor", supervisor_path(user_id: user.id), class: "button" %> </td>
+                        <% else %>
+                            <td>not assigned</td>
+                        <% end %>
+                    <% elsif user.assigned? %>
+                        <td>assigned</td>
+                    <% end %>
+                    <% if user.supervised %>
+                    <td> <%= user.supervised.full_name %></td>
+                    <% end %>
+                </tr>
+            </tbody>
+        <% end %>
+    </table>
+
+</div>

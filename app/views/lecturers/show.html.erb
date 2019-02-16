@@ -1,0 +1,59 @@
+<% provide(:title, @lec.first_name)%>
+<div class="row">
+    <div class="medium-12 columns">
+        <div id = "grav">
+            <div class="medium-4 columns">
+                <p> <%= gravatar_for @lec %></p>
+                <p>Name: <%= @lec.first_name %></p>
+                <p>Email: <%= @lec.email %></p>
+            </div>
+        </div>
+        <div class="medium-8 columns">
+            <table>
+                <h4><strong>Students assigned</strong></h4>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Project</th>
+                    </tr>
+                </thead>
+                <%# <%= render 'shared/stats' %1> %>
+                <% @lec.supervising.each do |sup|%>
+                    <tbody>
+                        <td> <%=link_to sup.first_name , sup%></td>
+                        <% sup.projects.each do |proj| %>
+                            <td> <%= proj.title %></td>
+                        <% end %>
+                    </tbody>
+                <% end %>
+
+            </table>
+            <h4><strong>Messages</strong></h4>
+            <% if @supervising.any?%>
+                <% @supervising.each do |m|%>
+                    <% if m.messages.any?%>
+                        <% m.messages.each do |msg| %>
+                                    <li style="list-style: none">
+                                        <%# <%= link_to gravatar_for(message.user, size: 50), message.user %1> %>
+                                        <span class="user"> <%= link_to msg.user.first_name, msg.user %></span><br>
+                                        <span class="content"> 
+                                            <%= msg.content %><br>
+                                            <%= image_tag msg.picture.url if msg.picture? %>
+                                        </span><br>
+                                        <span class="timestamp">
+                                            Posted <%= time_ago_in_words(msg.created_at) %> ago.
+                                        </span>
+                                        <span class="comment">
+                                            <%= link_to fa_icon('comments'), message_path(id: msg.id) %>
+                                            <%= pluralize(msg.replies.count, "reply") %>
+                                        </span>
+                                    </li>
+                                <% end %>
+                            <% end %>
+                            <%# <% @messages = m.messages.paginate(page: params[:page], per_page: 5)%> %>
+                        <% end %>
+                    <% end %>
+                    <%# <%= will_paginate @messages %1> %>
+        </div>
+    </div>
+</div>

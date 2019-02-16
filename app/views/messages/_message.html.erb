@@ -1,0 +1,20 @@
+<% if current_user?(message.user) || current_user?(@user.supervised)%>
+<li id="message- <%= message.id %>">
+    <%# <%= link_to gravatar_for(message.user, size: 50), message.user %1> %>
+    <span class="user"> <%= link_to message.user.first_name, message.user %></span><br>
+    <span class="content"> 
+        <%= message.content %><br>
+        <%= cl_image_tag message.picture.url if message.picture? %>
+    </span><br>
+    <span class="timestamp">
+        Posted <%= time_ago_in_words(message.created_at) %> ago.
+        <% if current_user?(message.user)%>
+            <%= link_to "delete", message, method: :delete, data: {confirm: "You sure you want to delete this message??"} %>
+        <% end %>
+    </span><br>
+    <span class="comment">
+        <%= link_to fa_icon('comments'), message_path(id: message.id) %>
+        <%= pluralize(message.replies.count, "reply") %>
+    </span>
+</li>
+<% end %>

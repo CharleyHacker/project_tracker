@@ -1,0 +1,28 @@
+<% provide(:title, "Supervisors")%>
+<div class="medium-12">
+    <h2>Choose supervisor to assign student</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>action</th>
+            </tr>
+        </thead>
+        <% @supervisors.each do |sup|%>
+            <tbody>
+                <tr>
+                    <td> <%= sup.id %></td>
+                    <td> <%= link_to sup.first_name, sup %></td>
+                    <td>
+                    <%= form_for(sup.active_relationships.build(supervised_id: @user.id)) do |f| %>
+                        <%= hidden_field_tag :supervised_id, @user.id %>
+                        <%= hidden_field_tag :supervisor_id, sup.id %>
+                        <%= f.submit "Assign supervisor", class: "button" %>
+                    <% end %>
+                    </td>
+                </tr>
+            </tbody>
+        <% end %>
+    </table>
+</div>
