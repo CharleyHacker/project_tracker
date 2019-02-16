@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: "Document tracker"
+  description: "lorem ipsum adjahda"
+  user: karam
+
+two:
+  title: "Checklist"
+  description: "lorem ipsum and some other things"
+  user: glorious

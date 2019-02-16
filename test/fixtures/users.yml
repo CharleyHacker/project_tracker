@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+karam:
+  first_name: Karam
+  last_name: Kinoti
+  email: karam@gmail.com
+  reg_no: SIT/4220/15
+  gender: Female
+  department: IT
+  password_digest: <%= User.digest('password')%>
+  admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
+
+glorious:
+  first_name: glorious
+  last_name: vuyanzi
+  email: glo@gmail.com
+  reg_no: COM/1331/15
+  gender: Female
+  department: Computer Science
+  password_digest: <%= User.digest('password')%>
+  admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
+      
+jenner:
+  first_name: kylie
+  last_name: jenner
+  email: jenner@gmail.com
+  reg_no: SIT/9220/15
+  gender: Female
+  department: IT
+  password_digest: <%= User.digest('password')%>
+  admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>

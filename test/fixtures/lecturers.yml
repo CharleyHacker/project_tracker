@@ -1,0 +1,32 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+
+ritah:
+  first_name: ritah
+  last_name: winnie
+  email: ritah@gmail.com
+  password_digest: <%= User.digest('password')%>
+  admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
+
+naish:
+  first_name: naish
+  last_name: naish
+  email: naish@gmail.com
+  password_digest: <%= User.digest('password')%>
+  activated: true
+  activated_at: <%= Time.zone.now %>
+
+jenner:
+  first_name: kylie
+  last_name: jenner
+  email: renner@gmail.com
+  password_digest: <%= User.digest('password')%>
+  admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
